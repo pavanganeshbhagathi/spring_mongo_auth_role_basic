@@ -1,6 +1,8 @@
 package com.security.basicsecurity.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.security.basicsecurity.enums.BooleanEnum;
+import com.security.basicsecurity.enums.IsActiveEnum;
 import lombok.*;
 import lombok.extern.java.Log;
 import org.springframework.data.annotation.Id;
@@ -29,9 +31,8 @@ public class Profile {
     private Date lastLoginDate;
     private Date lastLoginDateDisplay;
     private Date joinDate;
-    private String role; //ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
-    private String[] authorities;
-    private boolean isActive;
-    private boolean isNotLocked;
+    private List<Roles> role; //ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
+    private IsActiveEnum isActive;
+    private BooleanEnum isNotLocked;
 
 }

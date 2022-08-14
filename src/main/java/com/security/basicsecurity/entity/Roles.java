@@ -1,5 +1,6 @@
 package com.security.basicsecurity.entity;
 
+import com.security.basicsecurity.enums.RoleEnum;
 import lombok.*;
 import lombok.extern.java.Log;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,6 +16,6 @@ import java.util.List;
 public class Roles {
     @MongoId
     private Long id;
-    private String roleName;
+    private RoleEnum roleName;
     private List<Permissions> permissions;
 }

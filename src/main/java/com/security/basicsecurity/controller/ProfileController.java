@@ -25,7 +25,9 @@ public class ProfileController {
 
     @PostMapping("/add")
     public ResponseEntity<Profile> addNewUser(@Valid @RequestBody profileDto profilee) {
-        return new ResponseEntity<Profile>(profileService.saveProfile(profilee), HttpStatus.CREATED);
+        //return new ResponseEntity<Profile>(profileService.saveProfile(profilee), HttpStatus.CREATED);
+        log.info("addNewUser id {}" + profilee);
+        return null;
     }
 
     @PatchMapping(path= "/updatebyid/{id}")

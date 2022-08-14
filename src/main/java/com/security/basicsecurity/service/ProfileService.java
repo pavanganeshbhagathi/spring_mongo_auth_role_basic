@@ -4,7 +4,9 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.result.UpdateResult;
 import com.security.basicsecurity.dto.profileDto;
 import com.security.basicsecurity.dto.profileUpdateDto;
+import com.security.basicsecurity.entity.Permissions;
 import com.security.basicsecurity.entity.Profile;
+import com.security.basicsecurity.entity.Roles;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
@@ -25,19 +27,19 @@ public class ProfileService {
 
     private MongoTemplate mongoTemplate;
     private final static String PROFILE_COLLECTION = "profile";
-
+/*
     public Profile saveProfile(profileDto profilee) {
-
         log.info("{}" + profilee);
 
-        ModelMapper modelMapper = new ModelMapper();
         Profile.ProfileBuilder builder = Profile.builder();
+        Roles.RolesBuilder roleBuilder = Roles.builder();
+        Permissions.PermissionsBuilder PermissionsBuilder = Permissions.builder();
+
         builder.firstName(profilee.getFirstName());
         builder.lastName(profilee.getLastName());
         builder.userName(profilee.getUsername());
         builder.email(profilee.getEmail());
-        builder.role(profilee.getRole());
-        builder.authorities(profilee.getAuthorities());
+        builder.role();
         builder.password(profilee.getPassword());
         builder.lastLoginDate(new Date());
         builder.lastLoginDateDisplay(new Date());
@@ -61,7 +63,7 @@ public class ProfileService {
 
         return save;
     }
-
+*/
     public long updateProfile(String id, profileUpdateDto profilee) {
         ObjectId profileId = new ObjectId(id);
         Query query = new Query();

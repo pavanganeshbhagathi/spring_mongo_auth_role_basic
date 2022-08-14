@@ -5,6 +5,8 @@ import lombok.extern.java.Log;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.util.Optional;
+
 @Document("permissions")
 @Builder
 @Getter
@@ -13,8 +15,8 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Permissions {
     @MongoId
     private Long id;
-    private Boolean read;
-    private Boolean write;
-    private Boolean update;
-    private Boolean delete;
+    private Optional<Boolean> read;
+    private Optional<Boolean> write;
+    private Optional<Boolean> update;
+    private Optional<Boolean> delete;
 }

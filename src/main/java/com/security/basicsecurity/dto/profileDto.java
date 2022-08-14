@@ -2,6 +2,8 @@ package com.security.basicsecurity.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.security.basicsecurity.entity.Roles;
+import com.security.basicsecurity.enums.BooleanEnum;
+import com.security.basicsecurity.enums.IsActiveEnum;
 import lombok.*;
 import lombok.extern.java.Log;
 
@@ -24,7 +26,7 @@ public class profileDto {
     private Date joinDate;
     private String role; //ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
     private String[] authorities;
-    private Optional<String> isActive;
-    private Optional<String> isNotLocked;
+    private Optional<IsActiveEnum> isActive;
+    private Optional<BooleanEnum> isNotLocked;
 
 }
