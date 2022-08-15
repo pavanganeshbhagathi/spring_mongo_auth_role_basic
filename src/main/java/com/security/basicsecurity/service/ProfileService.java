@@ -31,6 +31,8 @@ public class ProfileService {
     public Profile saveProfile(profileDto profilee) {
         log.info("{}" + profilee);
 
+
+
         Profile.ProfileBuilder builder = Profile.builder();
         Roles.RolesBuilder roleBuilder = Roles.builder();
         Permissions.PermissionsBuilder PermissionsBuilder = Permissions.builder();
@@ -39,7 +41,6 @@ public class ProfileService {
         builder.lastName(profilee.getLastName());
         builder.userName(profilee.getUsername());
         builder.email(profilee.getEmail());
-        builder.role();
         builder.password(profilee.getPassword());
         builder.lastLoginDate(new Date());
         builder.lastLoginDateDisplay(new Date());
@@ -63,7 +64,9 @@ public class ProfileService {
 
         return save;
     }
-*/
+    */
+
+
     public long updateProfile(String id, profileUpdateDto profilee) {
         ObjectId profileId = new ObjectId(id);
         Query query = new Query();
