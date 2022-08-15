@@ -3,6 +3,8 @@ package com.security.basicsecurity.service;
 import com.security.basicsecurity.dto.PermissionDto;
 import com.security.basicsecurity.entity.Permissions;
 import com.security.basicsecurity.entity.Roles;
+import com.security.basicsecurity.enums.BooleanEnum;
+import com.security.basicsecurity.enums.PermissionsOperations;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -22,15 +24,16 @@ public class PermissionsService {
 
     public Permissions savePermissions(PermissionDto dto) {
         log.info(" dto {}" + dto);
+
         Permissions.PermissionsBuilder PermissionsBuilder = Permissions.builder();
         if (dto.getRead().isPresent())
-            PermissionsBuilder.read(Boolean.parseBoolean(String.valueOf(dto.getRead().get())));
+            PermissionsBuilder.read(convertStringToBoolean(dto.getRead()));
         if (dto.getWrite().isPresent())
-            PermissionsBuilder.write(Boolean.parseBoolean(String.valueOf(dto.getWrite().get())));
+            PermissionsBuilder.write(convertStringToBoolean(dto.getWrite()));
         if (dto.getUpdate().isPresent())
-            PermissionsBuilder.update(Boolean.parseBoolean(String.valueOf(dto.getUpdate().get())));
+            PermissionsBuilder.update(convertStringToBoolean(dto.getUpdate()));
         if (dto.getDelete().isPresent())
-            PermissionsBuilder.delete(Boolean.parseBoolean(String.valueOf(dto.getDelete().get())));
+            PermissionsBuilder.delete(convertStringToBoolean(dto.getDelete()));
 
 
         Permissions byPermissions = this.findByPermissions(dto);
@@ -48,27 +51,26 @@ public class PermissionsService {
     }
 
     public Permissions findByPermissions(PermissionDto dto) {
-        log.info(" dto {}" + dto);
-        Permissions.PermissionsBuilder PermissionsBuilder = Permissions.builder();
-        if (dto.getRead().isPresent())
-            PermissionsBuilder.read(Boolean.parseBoolean(String.valueOf(dto.getRead().get())));
-        if (dto.getWrite().isPresent())
-            PermissionsBuilder.write(Boolean.parseBoolean(String.valueOf(dto.getWrite().get())));
-        if (dto.getUpdate().isPresent())
-            PermissionsBuilder.update(Boolean.parseBoolean(String.valueOf(dto.getUpdate().get())));
-        if (dto.getDelete().isPresent())
-            PermissionsBuilder.delete(Boolean.parseBoolean(String.valueOf(dto.getDelete().get())));
-        Permissions build = PermissionsBuilder.build();
-        log.info("{}" + build);
         Query query = new Query();
-        query.addCriteria(Criteria.where("read").is(build.getRead()));
-        query.addCriteria(Criteria.where("write").is(build.getWrite()));
-        query.addCriteria(Criteria.where("update").is(build.getUpdate()));
-        query.addCriteria(Criteria.where("delete").is(build.getDelete()));
 
+        log.info(" dto {}" + dto);
+        if (dto.getRead().isPresent())
+            query.addCriteria(Criteria.where(PermissionsOperations.read.name()).is(convertStringToBoolean(dto.getRead())));
 
-        Permissions save = mongoTemplate.findOne(query, Permissions.class);
-        return save;
+        if (dto.getWrite().isPresent())
+            query.addCriteria(Criteria.where(PermissionsOperations.write.name()).is(convertStringToBoolean(dto.getWrite())));
+
+        if (dto.getUpdate().isPresent())
+            query.addCriteria(Criteria.where(PermissionsOperations.update.name()).is(convertStringToBoolean(dto.getUpdate())));
+
+        if (dto.getDelete().isPresent())
+            query.addCriteria(Criteria.where(PermissionsOperations.delete.name()).is(convertStringToBoolean(dto.getDelete())));
+
+        return mongoTemplate.findOne(query, Permissions.class);
+    }
+
+    private Boolean convertStringToBoolean(Optional<BooleanEnum> value) {
+        return Boolean.parseBoolean(value.get().name());
     }
 
 

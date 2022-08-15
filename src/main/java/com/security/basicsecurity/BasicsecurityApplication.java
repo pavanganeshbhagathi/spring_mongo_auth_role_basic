@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(
-		title = "Spring  security USer login",
+		title = "Spring  security User login",
 		version = "1.0",
 		description = "sample documents"
 ))
