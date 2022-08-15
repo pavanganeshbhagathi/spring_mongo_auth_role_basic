@@ -23,15 +23,19 @@ public class PermissionsService {
     private final static String Permissions_COLLECTION = "permissions";
 
     public Permissions savePermissions(PermissionDto dto) {
-        log.info(" dto {}" + dto);
+        //   log.info(" dto {}" + dto);
 
         Permissions.PermissionsBuilder PermissionsBuilder = Permissions.builder();
+
         if (dto.getRead().isPresent())
             PermissionsBuilder.read(convertStringToBoolean(dto.getRead()));
+
         if (dto.getWrite().isPresent())
             PermissionsBuilder.write(convertStringToBoolean(dto.getWrite()));
+
         if (dto.getUpdate().isPresent())
             PermissionsBuilder.update(convertStringToBoolean(dto.getUpdate()));
+
         if (dto.getDelete().isPresent())
             PermissionsBuilder.delete(convertStringToBoolean(dto.getDelete()));
 
@@ -53,7 +57,7 @@ public class PermissionsService {
     public Permissions findByPermissions(PermissionDto dto) {
         Query query = new Query();
 
-        log.info(" dto {}" + dto);
+        // log.info(" dto {}" + dto);
         if (dto.getRead().isPresent())
             query.addCriteria(Criteria.where(PermissionsOperations.read.name()).is(convertStringToBoolean(dto.getRead())));
 

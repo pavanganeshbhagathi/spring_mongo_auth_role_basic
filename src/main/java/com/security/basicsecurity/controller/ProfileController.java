@@ -35,8 +35,8 @@ public class ProfileController {
 
     @PatchMapping(path= "/updatebyid/{id}")
     public ResponseEntity<Long> updateUser(@PathVariable String id,@RequestBody Optional<profileUpdateDto> profilee) {
-        log.info("inside controller {}" + profilee);
-        log.info("inside id {}" + id);
+      //  log.info("inside controller {}" + profilee);
+        //log.info("inside id {}" + id);
         return new ResponseEntity<Long>(profileService.updateProfile(id, profilee.get()), HttpStatus.CREATED);
     }
 
