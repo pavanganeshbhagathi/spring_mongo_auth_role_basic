@@ -1,6 +1,9 @@
 package com.security.basicsecurity.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.security.basicsecurity.enums.BooleanEnum;
+import com.security.basicsecurity.enums.IsActiveEnum;
+import com.security.basicsecurity.enums.RoleNamenum;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -17,8 +20,7 @@ public class profileUpdateDto {
     private Optional<String> password;
     private Optional<String> email;
     private Optional<String> profileImageUrl;
-    private Optional<String> role; //ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
-    private Optional<String[]> authorities;
-    private Optional<String> isActive;
-    private Optional<String> isNotLocked;
+    private Optional<RoleNamenum> role;
+    private Optional<IsActiveEnum> isActive;
+    private Optional<BooleanEnum> isNotLocked;
 }

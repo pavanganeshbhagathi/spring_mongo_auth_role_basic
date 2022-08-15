@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,6 +33,13 @@ public class RolesService {
     public Roles saveRoles(RoleNamenum dto) {
         // log.info("getRoleName {}"+dto.getRoleName().name());
         //log.info("getRoleName values {}"+dto.getRoleName());
+
+        Roles byRole = this.findByRole(dto);
+        Optional<Roles> byRoleePresent = Optional.ofNullable(byRole);
+        if (byRoleePresent.isPresent()) {
+            return byRole;
+        }
+
         Roles.RolesBuilder roleBuilder = Roles.builder();
         PermissionDto.PermissionDtoBuilder permissionDtoBuilder = PermissionDto.builder();
         RoleEnum roleEnum = RoleEnum.valueOf(dto.name());
@@ -68,10 +77,16 @@ public class RolesService {
 
 
         Permissions permissions = permissionsService.savePermissions(permissionDtoBuilder.build());
-          log.info(" permissions {}" + permissions);
-       ObjectId permissionsId = new ObjectId(permissions.getId());
+        log.info(" permissions {}" + permissions);
+        ObjectId permissionsId = new ObjectId(permissions.getId());
         roleBuilder.permissionsId(permissionsId);
         return mongoTemplate.save(roleBuilder.build(), PROFILE_COLLECTION);
+    }
+
+    public Roles findByRole(RoleNamenum dto) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("roleName").is(dto));
+        return mongoTemplate.findOne(query, Roles.class);
     }
 
 }

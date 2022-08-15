@@ -29,13 +29,12 @@ public class ProfileController {
     public ResponseEntity<Profile> addNewUser(@Valid @RequestBody profileDto dto) {
 
         log.info("addNewUser id {}" + dto);
-      //  return new ResponseEntity<Profile>(profileService.saveProfile(dto), HttpStatus.CREATED);
-        return  null;
+        return new ResponseEntity<Profile>(profileService.saveProfile(dto), HttpStatus.CREATED);
     }
 
-    @PatchMapping(path= "/updatebyid/{id}")
-    public ResponseEntity<Long> updateUser(@PathVariable String id,@RequestBody Optional<profileUpdateDto> profilee) {
-      //  log.info("inside controller {}" + profilee);
+    @PatchMapping(path = "/updatebyid/{id}")
+    public ResponseEntity<Long> updateUser(@PathVariable String id, @RequestBody Optional<profileUpdateDto> profilee) {
+        //  log.info("inside controller {}" + profilee);
         //log.info("inside id {}" + id);
         return new ResponseEntity<Long>(profileService.updateProfile(id, profilee.get()), HttpStatus.CREATED);
     }

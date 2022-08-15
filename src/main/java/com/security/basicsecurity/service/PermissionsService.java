@@ -73,7 +73,7 @@ public class PermissionsService {
         return mongoTemplate.findOne(query, Permissions.class);
     }
 
-    private Boolean convertStringToBoolean(Optional<BooleanEnum> value) {
+    public Boolean convertStringToBoolean(Optional<BooleanEnum> value) {
         return Boolean.parseBoolean(value.get().name());
     }
 
