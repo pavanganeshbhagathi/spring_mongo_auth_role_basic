@@ -43,7 +43,7 @@ public class ProfileService {
         if (profilee.getUsername().isPresent()) builder.userName(profilee.getUsername().get());
         if (profilee.getEmail().isPresent()) builder.email(profilee.getEmail().get());
         if (profilee.getPassword().isPresent()) builder.password(profilee.getPassword().get());
-        if (profilee.getIsActive().isPresent()) builder.isActive(profilee.getIsActive().get());
+        if (profilee.getIsActive().isPresent()) builder.isActive((profilee.getIsActive().get()).isActive());
         builder.lastLoginDate(new Date());
         builder.lastLoginDateDisplay(new Date());
         builder.joinDate(new Date());

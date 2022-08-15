@@ -31,7 +31,7 @@ public class Profile {
     private Date lastLoginDateDisplay;
     private Date joinDate;
     private RoleNamenum role; //ROLE_USER{ read, edit }, ROLE_ADMIN {delete}
-    private IsActiveEnum isActive;
+    private Boolean isActive;
     private Boolean isNotLocked;
 
 }
