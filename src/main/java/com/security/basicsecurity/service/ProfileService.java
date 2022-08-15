@@ -9,6 +9,7 @@ import com.security.basicsecurity.entity.Profile;
 import com.security.basicsecurity.entity.Roles;
 import com.security.basicsecurity.enums.BooleanEnum;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
@@ -21,7 +22,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import java.util.Date;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class ProfileService {
 
@@ -64,7 +65,7 @@ public class ProfileService {
     }
 
 
-    public long updateProfile(String id, profileUpdateDto profilee) {
+    public Long updateProfile(String id, profileUpdateDto profilee) {
         ObjectId profileId = new ObjectId(id);
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(profileId));
@@ -85,14 +86,13 @@ public class ProfileService {
         profileUpdate.set("lastLoginDate", new Date());
         profileUpdate.set("lastLoginDateDisplay", new Date());
         if (profilee.getIsActive().isPresent())
-            profileUpdate.set("isActive",profilee.getIsActive().get());
+            profileUpdate.set("isActive", profilee.getIsActive().get());
 
         if (profilee.getIsNotLocked().isPresent())
-            profileUpdate.set("isNotLocked",(Boolean.parseBoolean((profilee.getIsNotLocked().get()).name())));
+            profileUpdate.set("isNotLocked", (Boolean.parseBoolean((profilee.getIsNotLocked().get()).name())));
 
         UpdateResult updateResult = mongoTemplate.updateFirst(query, profileUpdate, Profile.class);
         log.info("updated db  data{}" + updateResult.toString());
-
 
         return updateResult.getModifiedCount();
     }

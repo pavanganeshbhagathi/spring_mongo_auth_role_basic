@@ -7,6 +7,7 @@ import com.security.basicsecurity.entity.Profile;
 import com.security.basicsecurity.service.PermissionsService;
 import com.security.basicsecurity.service.ProfileService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(path = {"/user"})
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class ProfileController {
 

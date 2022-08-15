@@ -10,6 +10,7 @@ import com.security.basicsecurity.enums.PermissionsOperations;
 import com.security.basicsecurity.enums.RoleEnum;
 import com.security.basicsecurity.enums.RoleNamenum;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class RolesService {
     private MongoTemplate mongoTemplate;

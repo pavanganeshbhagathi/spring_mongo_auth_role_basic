@@ -8,6 +8,7 @@ import com.security.basicsecurity.entity.Roles;
 import com.security.basicsecurity.enums.RoleNamenum;
 import com.security.basicsecurity.service.RolesService;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = {"/roles"})
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class RoleController {
 

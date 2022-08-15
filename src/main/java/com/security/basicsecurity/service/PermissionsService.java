@@ -6,6 +6,7 @@ import com.security.basicsecurity.entity.Roles;
 import com.security.basicsecurity.enums.BooleanEnum;
 import com.security.basicsecurity.enums.PermissionsOperations;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -15,7 +16,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import java.util.Optional;
 
 @Configuration
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class PermissionsService {
 
